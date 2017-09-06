@@ -5,5 +5,10 @@
   "license": "MIT",
   "dependencies": {
     "bs-platform": "^1.9.1"
+  },
+  "scripts": {
+    "bs": "bsb -make-world",
+    "prestart": "yarn bs",
+    "start": "node ./lib/js/src/index.js"
   }
 }
