@@ -7,6 +7,7 @@
     "bs-platform": "^1.9.1",
     "dotenv-webpack": "^1.5.4",
     "prepack": "^0.2.6",
+    "telegraf": "^3.10.1",
     "webpack": "2.x",
     "webpack-blocks": "next"
   },
