@@ -11,7 +11,8 @@
   "scripts": {
     "bs": "bsb -make-world",
     "webpack": "NODE_ENV=production webpack --config webpack.config.js",
-    "prestart": "yarn bs && yarn webpack",
+    "build": "yarn bs && yarn webpack",
+    "prestart": "yarn build",
     "start": "node ./build/app.js"
   }
 }
