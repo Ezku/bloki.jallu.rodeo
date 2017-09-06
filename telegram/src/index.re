@@ -1,9 +1,10 @@
 module Telegraf = {
   type bot;
-  external bot : string => bot = "telegraf" [@@bs.module] [@@bs.new];
+  type token;
+  external bot : token => bot = "telegraf" [@@bs.module] [@@bs.new];
 };
 
-external apiToken : string = "process.env.TELEGRAM_API_TOKEN" [@@bs.val];
+external apiToken : Telegraf.token = "process.env.TELEGRAM_API_TOKEN" [@@bs.val];
 
 let bot = Telegraf.bot apiToken;
 
