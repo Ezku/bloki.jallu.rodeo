@@ -7,7 +7,7 @@ build:
 	(cd telegram && yarn build)
 
 docker-build: build
-	(cd telegram && docker build --tag="hermes/telegram" .)
+	(cd telegram && docker build --tag="bloki/telegram" .)
 
 docker-run: docker-build
-	docker run hermes/telegram
+	docker run bloki/telegram
