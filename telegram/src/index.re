@@ -12,6 +12,6 @@ module Telegraf = {
 
 external apiToken : Telegraf.token = "process.env.TELEGRAM_API_TOKEN" [@@bs.val];
 
-Telegraf.(
-  bot apiToken |> command "start" @@ reply "#lol" |> hears [%re "/#lol/"] @@ reply "#lol" |> startPolling
-);
+let hashtag = [%re "/#[^ ,.]+/"];
+
+Telegraf.(bot apiToken |> hears hashtag @@ reply "#lol" |> startPolling);
