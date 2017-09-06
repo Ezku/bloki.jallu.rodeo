@@ -1,9 +1,10 @@
-Js.log "hello world";
-
-external username : string = "process.env.TELEGRAM_USERNAME" [@@bs.val];
+module Telegraf = {
+  type bot;
+  external bot : string => bot = "telegraf" [@@bs.module] [@@bs.new];
+};
 
 external apiToken : string = "process.env.TELEGRAM_API_TOKEN" [@@bs.val];
 
-Js.log username;
+let bot = Telegraf.bot apiToken;
 
 Js.log apiToken;
