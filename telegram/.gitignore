@@ -1,5 +1,14 @@
 node_modules
 .env
+
+# webpack output
+build
+
+# bucklescript output
+lib/bs
+lib/js
+
+# ocaml / bucklescript
 *.exe
 *.obj
 *.out
@@ -20,8 +29,6 @@ node_modules
 *.annot
 *.cmj
 *.bak
-lib/bs
-lib/js
 *.mlast
 *.mliast
 .vscode

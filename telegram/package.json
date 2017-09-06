@@ -10,7 +10,8 @@
   },
   "scripts": {
     "bs": "bsb -make-world",
-    "prestart": "yarn bs",
-    "start": "node ./lib/js/src/index.js"
+    "webpack": "NODE_ENV=production webpack --config webpack.config.js",
+    "prestart": "yarn bs && yarn webpack",
+    "start": "node ./build/app.js"
   }
 }
