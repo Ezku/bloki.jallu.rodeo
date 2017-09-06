@@ -1,0 +1,10 @@
+{
+  "name": "@hermes/telegram",
+  "version": "0.0.0",
+  "sources": [
+    "src"
+  ],
+  "bs-dependencies" : [
+      // add your bs-dependencies here 
+  ]
+}
