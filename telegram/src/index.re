@@ -4,10 +4,14 @@ module Telegraf = {
   type context;
   type middleware = context => unit;
   external bot : token => bot = "telegraf" [@@bs.module] [@@bs.new];
+  external command : string => middleware => bot = "command" [@@bs.send.pipe : bot];
   external hears : string => middleware => bot = "hears" [@@bs.send.pipe : bot];
   external startPolling : unit = "startPolling" [@@bs.send.pipe : bot];
+  external reply : string => unit = "reply" [@@bs.send.pipe : context];
 };
 
 external apiToken : Telegraf.token = "process.env.TELEGRAM_API_TOKEN" [@@bs.val];
 
-Telegraf.(bot apiToken |> hears "#lol" (fun _context => Js.log "#lol") |> startPolling);
+Telegraf.(
+  bot apiToken |> command "start" (reply "#lol") |> hears "#lol" (reply "#lol") |> startPolling
+);
