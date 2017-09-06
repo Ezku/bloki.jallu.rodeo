@@ -2,5 +2,8 @@
   "name": "@hermes/telegram",
   "version": "0.0.0",
   "main": "index.js",
-  "license": "MIT"
+  "license": "MIT",
+  "dependencies": {
+    "bs-platform": "^1.9.1"
+  }
 }
