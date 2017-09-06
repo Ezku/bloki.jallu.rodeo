@@ -5,6 +5,7 @@
   "license": "MIT",
   "dependencies": {
     "bs-platform": "^1.9.1",
+    "prepack": "^0.2.6",
     "webpack": "2.x",
     "webpack-blocks": "next"
   },
