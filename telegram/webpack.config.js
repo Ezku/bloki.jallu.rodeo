@@ -10,9 +10,11 @@ const {
 
 const path = require('path');
 
+const target = require('./webpack/target');
 const dotenvLoader = require('./webpack/dotenv');
 
 module.exports = createConfig([
+  target('node'),
   entryPoint('./lib/js/src/index.js'),
   setOutput('./build/app.js'),
   defineConstants({
