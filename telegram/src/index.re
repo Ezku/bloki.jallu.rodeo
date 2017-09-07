@@ -1,7 +1,7 @@
 module Telegraf = {
   type bot;
   type token;
-  type context;
+  type context = Js.t {. updateType : string};
   type middleware = context => unit;
   external bot : token => bot = "telegraf" [@@bs.module] [@@bs.new];
   external command : string => middleware => bot = "command" [@@bs.send.pipe : bot];
@@ -15,4 +15,12 @@ external apiToken : Telegraf.token = "process.env.TELEGRAM_API_TOKEN" [@@bs.val]
 
 let hashtag = [%re "/#[^ ,.]+/"];
 
-Telegraf.(bot apiToken |> hears hashtag @@ reply "#lol" |> startPolling);
+Telegraf.(
+  bot apiToken |>
+  hears hashtag @@ (
+    fun context => {
+      Js.log @@ "received: " ^ context##updateType;
+      context |> reply @@ "#lol got " ^ context##updateType
+    }
+  ) |> startPolling
+);
