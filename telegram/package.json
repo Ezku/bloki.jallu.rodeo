@@ -14,8 +14,10 @@
   "scripts": {
     "bs": "bsb -make-world",
     "webpack": "NODE_ENV=production webpack --config webpack.config.js",
+    "build": "yarn bs && yarn webpack",
     "pm2": "pm2 start ./build/app.js --no-daemon --only development",
-    "start": "yarn bs && yarn webpack && yarn pm2",
-    "dev": "pm2-dev pm2.dev.yml"
+    "start": "yarn build && yarn pm2",
+    "dev": "pm2-dev pm2.dev.yml",
+    "watch": "pm2-dev pm2.watch.yml"
   }
 }
