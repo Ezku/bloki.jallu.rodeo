@@ -6,6 +6,7 @@
   "dependencies": {
     "bs-platform": "^1.9.1",
     "dotenv-webpack": "^1.5.4",
+    "node-noop": "^1.0.0",
     "pm2": "^2.6.1",
     "telegraf": "^3.10.1",
     "webpack": "2.x",
