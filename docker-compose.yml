@@ -2,3 +2,7 @@ version: '3'
 services:
   telegram:
     build: ./telegram
+    expose:
+      # Keymetrics.io
+      - "80"
+      - "43554"
