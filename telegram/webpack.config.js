@@ -1,8 +1,11 @@
+const webpack = require('webpack');
 const {
   createConfig,
 
   // Feature blocks
   babel,
+  uglify,
+  addPlugins,
 
   // Shorthand setters
   defineConstants,
@@ -28,5 +31,24 @@ module.exports = createConfig([
   }),
   dotenvLoader(),
   env('development', []),
-  env('production', [])
+  env('production', [
+    uglify({
+      uglifyOptions: {
+        mangle: false,
+        compress: {
+          dead_code: true,
+          evaluate: true,
+          unused: true,
+          toplevel: true
+        },
+        output: {
+          comments: false,
+          beautify: true
+        }
+      }
+    }),
+    addPlugins([
+      new webpack.LoaderOptionsPlugin({ minimize: true })
+    ])
+  ])
 ]);
