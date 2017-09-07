@@ -4,7 +4,8 @@
   "sources": [
     "src"
   ],
+  "package-specs": ["es6"],
   "bs-dependencies" : [
-      // add your bs-dependencies here 
+      // add your bs-dependencies here
   ]
 }

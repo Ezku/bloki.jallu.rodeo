@@ -1,6 +1,9 @@
 const {
   createConfig,
 
+  // Feature blocks
+  babel,
+
   // Shorthand setters
   defineConstants,
   entryPoint,
@@ -16,8 +19,9 @@ const replaceModulePlugin = require('./webpack/replaceModulePlugin');
 
 module.exports = createConfig([
   target('node'),
+  babel(),
   replaceModulePlugin(/\/iconv-loader$/, 'node-noop'),
-  entryPoint('./lib/js/src/index.js'),
+  entryPoint('./lib/es6/src/index.js'),
   setOutput('./build/app.js'),
   defineConstants({
     'process.env.NODE_ENV': process.env.NODE_ENV
