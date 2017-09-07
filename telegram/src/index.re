@@ -1,4 +1,5 @@
 module Telegram = {
+  /* https://core.telegram.org/bots/api#message */
   type message = Js.t {. message_id : string, date : string};
 };
 
