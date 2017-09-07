@@ -1,0 +1,5 @@
+apps:
+  - script: ./build/app.js
+    watch: true
+    watch_options:
+      usePolling: true

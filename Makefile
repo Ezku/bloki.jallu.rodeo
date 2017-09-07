@@ -1,4 +1,4 @@
-.PHONY: install build docker-build docker-run
+.PHONY: install build watch up down
 
 install:
 	(cd telegram && yarn)
@@ -6,5 +6,11 @@ install:
 build:
 	(cd telegram && yarn build)
 
-up: build
-	docker-compose up
+watch:
+	(cd telegram && yarn watch)
+
+up:
+	docker-compose up -d --build
+
+down:
+	docker-compose down

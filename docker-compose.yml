@@ -1,4 +1,4 @@
-version: '3'
+version: "3.2"
 services:
   telegram:
     build: ./telegram
@@ -6,3 +6,8 @@ services:
       # Keymetrics.io
       - "80"
       - "43554"
+    volumes:
+      - type: bind
+        source: ./telegram/build
+        target: /app/build
+        read_only: true
