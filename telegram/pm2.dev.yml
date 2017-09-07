@@ -1,0 +1,16 @@
+apps:
+  - script : ./node_modules/.bin/bsb
+    args   : '-make-world'
+    name   : 'bsb'
+    watch  : ./src
+    instances: 1
+  - script : ./node_modules/.bin/webpack
+    args   : '--config webpack.config.js'
+    env    : '{"NODE_ENV": "production"}'
+    name   : 'webpack'
+    watch  : ./lib/js/src
+    instances: 1
+  - script : ./build/app.js
+    name   : 'app'
+    watch  : ./build
+    instances: 1

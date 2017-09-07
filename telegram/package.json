@@ -6,6 +6,7 @@
   "dependencies": {
     "bs-platform": "^1.9.1",
     "dotenv-webpack": "^1.5.4",
+    "pm2": "^2.6.1",
     "telegraf": "^3.10.1",
     "webpack": "2.x",
     "webpack-blocks": "next"
@@ -13,9 +14,8 @@
   "scripts": {
     "bs": "bsb -make-world",
     "webpack": "NODE_ENV=production webpack --config webpack.config.js",
-    "prepack": "prepack ./build/app.js --out ./build/app.js",
-    "build": "yarn bs && yarn webpack",
-    "prestart": "yarn build",
-    "start": "node ./build/app.js"
+    "pm2": "pm2 start ./build/app.js --no-daemon --only development",
+    "start": "yarn bs && yarn webpack && yarn pm2",
+    "dev": "pm2-dev pm2.dev.yml"
   }
 }
