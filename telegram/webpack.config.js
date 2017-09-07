@@ -12,9 +12,11 @@ const path = require('path');
 
 const target = require('./webpack/target');
 const dotenvLoader = require('./webpack/dotenv');
+const ignorePlugin = require('./webpack/ignorePlugin');
 
 module.exports = createConfig([
   target('node'),
+  ignorePlugin(/iconv-loader/),
   entryPoint('./lib/js/src/index.js'),
   setOutput('./build/app.js'),
   defineConstants({
