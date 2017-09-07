@@ -1,7 +1,11 @@
+module Telegram = {
+  type message = Js.t {. message_id : string, date : string};
+};
+
 module Telegraf = {
   type bot;
   type token;
-  type context = Js.t {. updateType : string};
+  type context = Js.t {. updateType : string, message : Telegram.message};
   type middleware = context => unit;
   external bot : token => bot = "telegraf" [@@bs.module] [@@bs.new];
   external command : string => middleware => bot = "command" [@@bs.send.pipe : bot];
@@ -19,8 +23,8 @@ Telegraf.(
   bot apiToken |>
   hears hashtag @@ (
     fun context => {
-      Js.log @@ "received: " ^ context##updateType;
-      context |> reply @@ "#lol got " ^ context##updateType
+      Js.log @@ "received: " ^ context##updateType ^ " at " ^ context##message##date;
+      context |> reply @@ "#lol got " ^ context##updateType ^ " at " ^ context##message##date
     }
   ) |> startPolling
 );
