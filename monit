@@ -1,0 +1,2 @@
+#!/bin/sh
+docker exec -it `docker ps -l --format '{{.Names}}' --filter name=blokijallurodeo_telegram` pm2 monit
