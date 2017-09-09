@@ -19,9 +19,11 @@
     "webpack": "webpack --config webpack.config.js",
     "webpack-watch": "webpack --config webpack.config.js --watch",
     "build": "yarn webpack",
+    "build:dist": "NODE_ENV=production yarn webpack",
     "pm2": "pm2 start ./build/app.js --no-daemon --only development",
     "start": "yarn build && yarn pm2",
     "dev": "pm2-dev pm2.dev.yml",
-    "watch": "yarn webpack-watch"
+    "watch": "yarn webpack-watch",
+    "watch:dist": "NODE_ENV=production yarn webpack-watch"
   }
 }
