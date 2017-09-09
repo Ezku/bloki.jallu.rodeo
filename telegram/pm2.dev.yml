@@ -1,7 +1,7 @@
 apps:
   - script : ./node_modules/.bin/webpack
     args   : '--config webpack.config.js'
-    env    : '{"NODE_ENV": "production"}'
+    env    : '{"NODE_ENV": "development"}'
     name   : 'webpack'
     watch  : ./src
     instances: 1
