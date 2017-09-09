@@ -15,9 +15,9 @@
     "webpack-blocks": "next"
   },
   "scripts": {
-    "bs": "bsb -make-world",
     "webpack": "NODE_ENV=production webpack --config webpack.config.js",
-    "build": "yarn bs && yarn webpack",
+    "webpack-watch": "NODE_ENV=production webpack --config webpack.config.js --watch",
+    "build": "yarn webpack",
     "pm2": "pm2 start ./build/app.js --no-daemon --only development",
     "start": "yarn build && yarn pm2",
     "dev": "pm2-dev pm2.dev.yml",
