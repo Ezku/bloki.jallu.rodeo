@@ -14,6 +14,7 @@ const {
   env,
   setOutput
 } = require('webpack-blocks');
+const nodeExternals = require('webpack-node-externals');
 
 const path = require('path');
 
@@ -21,15 +22,14 @@ const target = require('./webpack/target');
 const dotenvLoader = require('./webpack/dotenv');
 const replaceModulePlugin = require('./webpack/replaceModulePlugin');
 const bucklescriptLoader = require('./webpack/bucklescriptLoader');
-const vendorChunkPlugin = require('./webpack/vendorChunkPlugin');
-const manifestPlugin = require('./webpack/manifestPlugin');
+const externals = require('./webpack/externals');
 
 module.exports = createConfig([
   target('node'),
   babel(),
   replaceModulePlugin(/\/iconv-loader$/, 'node-noop'),
   entryPoint('./src/index.re'),
-  setOutput('./build/app.[name].js'),
+  setOutput('./build/app.js'),
   match("*.re", { exclude: path.resolve('node_modules'), include: path.resolve('src') }, [
     bucklescriptLoader()
   ]),
@@ -38,8 +38,7 @@ module.exports = createConfig([
   }),
   dotenvLoader(),
   env('development', [
-    vendorChunkPlugin("node_modules"),
-    manifestPlugin("app")
+    externals(nodeExternals())
   ]),
   env('production', [
     uglify({
