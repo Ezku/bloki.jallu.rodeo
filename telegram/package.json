@@ -5,6 +5,7 @@
   "license": "MIT",
   "dependencies": {
     "babel-preset-env": "^1.6.0",
+    "bs-loader": "^1.7.1",
     "bs-platform": "^1.9.1",
     "dotenv-webpack": "^1.5.4",
     "node-noop": "^1.0.0",
