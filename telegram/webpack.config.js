@@ -1,6 +1,7 @@
 const webpack = require('webpack');
 const {
   createConfig,
+  match,
 
   // Feature blocks
   babel,
@@ -19,13 +20,17 @@ const path = require('path');
 const target = require('./webpack/target');
 const dotenvLoader = require('./webpack/dotenv');
 const replaceModulePlugin = require('./webpack/replaceModulePlugin');
+const bucklescriptLoader = require('./webpack/bucklescriptLoader');
 
 module.exports = createConfig([
   target('node'),
   babel(),
   replaceModulePlugin(/\/iconv-loader$/, 'node-noop'),
-  entryPoint('./lib/es6/src/index.js'),
+  entryPoint('./src/index.re'),
   setOutput('./build/app.js'),
+  match("*.re", { exclude: path.resolve('node_modules') }, [
+    bucklescriptLoader()
+  ]),
   defineConstants({
     'process.env.NODE_ENV': process.env.NODE_ENV
   }),
