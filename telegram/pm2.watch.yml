@@ -3,5 +3,5 @@ apps:
     args   : '--config webpack.config.js'
     env    : '{"NODE_ENV": "production"}'
     name   : 'webpack'
-    watch  : ./lib/js/src
+    watch  : ./src
     instances: 1
