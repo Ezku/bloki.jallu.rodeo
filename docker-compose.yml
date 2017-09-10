@@ -6,6 +6,8 @@ services:
       # Keymetrics.io
       - "80"
       - "43554"
+      # pm2 web monitor
+      - "9615"
     volumes:
       - type: bind
         source: ./telegram/build
