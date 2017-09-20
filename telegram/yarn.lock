@@ -979,10 +979,6 @@ bs-loader@^1.8.0-1:
     loader-utils "^1.1.0"
     read-bsconfig "^1.0.1"
 
-bs-platform@^1.9.1:
-  version "1.9.1"
-  resolved "https://registry.yarnpkg.com/bs-platform/-/bs-platform-1.9.1.tgz#1195562f0f8b131cc758693e7c9b31d7e0022001"
-
 buffer-indexof@^1.0.0:
   version "1.1.1"
   resolved "https://registry.yarnpkg.com/buffer-indexof/-/buffer-indexof-1.1.1.tgz#52fabcc6a606d1a00302802648ef68f639da268c"
