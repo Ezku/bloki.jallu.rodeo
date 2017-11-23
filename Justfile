@@ -15,3 +15,11 @@ up:
 
 down:
 	docker-compose down
+
+# Launch pm2 monit on telegram container
+monit:
+	./monit
+
+# Log in to AWS ECR in docker and hyper
+login:
+	./login
