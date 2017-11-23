@@ -1,5 +1,3 @@
-.PHONY: install build watch up down
-
 install:
 	(cd telegram && yarn)
 
