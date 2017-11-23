@@ -1,3 +1,6 @@
+default:
+	just -l
+
 install:
 	(cd telegram && yarn)
 
