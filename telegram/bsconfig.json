@@ -8,5 +8,6 @@
   "package-specs": ["es6"],
   "bs-dependencies" : [
       // add your bs-dependencies here
-  ]
+  ],
+  "refmt": 3
 }
