@@ -2,6 +2,8 @@ default:
 	just -l
 
 install:
+	npm install -g yarn
+	yarn global add https://github.com/reasonml/reason-cli/archive/3.0.4-bin-darwin.tar.gz
 	(cd telegram && yarn)
 
 build:
