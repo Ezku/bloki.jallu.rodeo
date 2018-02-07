@@ -9,6 +9,8 @@
     "bs-platform": "^1.9.3",
     "dotenv-webpack": "^1.5.4",
     "node-noop": "^1.0.0",
+    "nodemon": "^1.14.12",
+    "npm-run-all": "^4.1.2",
     "telegraf": "^3.10.1",
     "webpack": "2.x",
     "webpack-blocks": "next",
