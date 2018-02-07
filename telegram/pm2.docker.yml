@@ -1,6 +1,0 @@
-apps:
-  - script: ./build/app.js
-    watch: ./build
-    watch_options:
-      # NFS filesystems require this for watch to work
-      usePolling: true

@@ -3,14 +3,3 @@ services:
   telegram:
     build: ./telegram
     image: 337767331395.dkr.ecr.eu-central-1.amazonaws.com/bloki.jallu.rodeo/telegram
-    expose:
-      # Keymetrics.io
-      - "80"
-      - "43554"
-      # pm2 web monitor
-      - "9615"
-    volumes:
-      - type: bind
-        source: ./telegram/build
-        target: /app/build
-        read_only: true
