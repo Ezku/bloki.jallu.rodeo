@@ -22,9 +22,9 @@ down:
 	docker-compose down
 
 # Launch pm2 monit on telegram container
+FORMAT="{{.Names}}"
 monit:
-	#!/bin/sh
-	# docker exec -it `docker ps -l --format '\{\{.Names\}\}' --filter name=blokijallurodeo_telegram` pm2 monit
+	docker exec -it `docker ps -l --format '{{ FORMAT }}' --filter name=blokijallurodeo_telegram` pm2 monit
 
 # Log in to AWS ECR in docker and hyper
 login:
