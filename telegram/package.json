@@ -22,6 +22,9 @@
     "build": "yarn webpack",
     "build:dist": "NODE_ENV=production yarn webpack",
     "watch": "yarn webpack-watch",
-    "watch:dist": "NODE_ENV=production yarn webpack-watch"
+    "watch:dist": "NODE_ENV=production yarn webpack-watch",
+    "dev": "run-p dev:*",
+    "dev:build-watch": "yarn webpack-watch",
+    "dev:run-watch": "nodemon build/app.js"
   }
 }
