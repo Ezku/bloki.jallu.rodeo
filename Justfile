@@ -1,3 +1,6 @@
+PROFILE="jallurodeo"
+REGION="eu-central-1"
+
 default:
 	just -l
 
@@ -20,8 +23,13 @@ down:
 
 # Launch pm2 monit on telegram container
 monit:
-	./monit
+	#!/bin/sh
+	# docker exec -it `docker ps -l --format '\{\{.Names\}\}' --filter name=blokijallurodeo_telegram` pm2 monit
 
 # Log in to AWS ECR in docker and hyper
 login:
-	./login
+	@echo docker: logging in to AWS ECR
+	eval $(aws ecr get-login --no-include-email --region {{ REGION }} --profile {{ PROFILE }})
+	
+	@echo hyper: logging in to AWS ECR
+	eval $(aws ecr get-login --no-include-email --region {{ REGION }} --profile {{ PROFILE }} | sed 's/docker/hyper/')
