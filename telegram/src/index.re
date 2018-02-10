@@ -35,7 +35,8 @@ let hashtag = [%re "/#[^ ,.]+/"];
 
 Telegraf.(
   bot(apiToken)
-  |> hears(hashtag) @@
-  (context => context |> reply @@ "Heard: " ++ Telegram.Message.format(context##message))
+  |> hears(hashtag, context =>
+       context |> reply @@ "Heard: " ++ Telegram.Message.format(context##message)
+     )
   |> startPolling
 );
