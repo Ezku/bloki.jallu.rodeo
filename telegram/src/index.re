@@ -1,9 +1,14 @@
 module Telegram = {
   /* https://core.telegram.org/bots/api#message */
-  type message = {
-    .
-    "message_id": string,
-    "date": string
+  module Message = {
+    type t = {
+      .
+      "message_id": string,
+      "date": string,
+      "from": {. "first_name": string},
+      "text": string
+    };
+    let format = m : string => "[" ++ m##date ++ "] <" ++ m##from##first_name ++ "> " ++ m##text;
   };
 };
 
@@ -13,7 +18,7 @@ module Telegraf = {
   type context = {
     .
     "updateType": string,
-    "message": Telegram.message
+    "message": Telegram.Message.t
   };
   type middleware = context => unit;
   [@bs.module] [@bs.new] external bot : token => bot = "telegraf";
@@ -31,11 +36,6 @@ let hashtag = [%re "/#[^ ,.]+/"];
 Telegraf.(
   bot(apiToken)
   |> hears(hashtag) @@
-  (
-    context => {
-      Js.log("received: " ++ context##updateType ++ " at " ++ context##message##date);
-      context |> reply @@ "#lol got " ++ context##updateType ++ " at " ++ context##message##date;
-    }
-  )
+  (context => context |> reply @@ "Heard: " ++ Telegram.Message.format(context##message))
   |> startPolling
 );
