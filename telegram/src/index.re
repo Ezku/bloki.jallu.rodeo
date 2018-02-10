@@ -3,7 +3,7 @@ module Telegram = {
   module Message = {
     type t = {
       .
-      "message_id": string,
+      "message_id": int,
       "date": string,
       "from": {. "first_name": string},
       "text": string
@@ -15,11 +15,19 @@ module Telegram = {
 module Telegraf = {
   type bot;
   type token;
+  module Update = {
+    type t = {
+      .
+      "update_id": int,
+      "message": Telegram.Message.t,
+      "reply_to_message": Js.nullable(Telegram.Message.t)
+    };
+  };
   module Context = {
     type t = {
       .
       "updateType": string,
-      "message": Telegram.Message.t
+      "update": Update.t
     };
   };
   type middleware = Context.t => unit;
@@ -38,7 +46,7 @@ let hashtag = [%re "/#[^ ,.]+/"];
 Telegraf.(
   bot(apiToken)
   |> hears(hashtag, context =>
-       context |> reply @@ "Heard: " ++ Telegram.Message.format(context##message)
+       context |> reply @@ "Heard: " ++ Telegram.Message.format(context##update##message)
      )
   |> startPolling
 );
