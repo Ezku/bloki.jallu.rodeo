@@ -21,6 +21,9 @@ dev:
 up:
 	docker-compose up -d --build
 
+logs service='telegram' tail='all':
+	docker-compose logs --follow --tail="{{ tail }}" "{{ service }}"
+
 down:
 	docker-compose down
 
