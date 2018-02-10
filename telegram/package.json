@@ -13,7 +13,7 @@
     "npm-run-all": "^4.1.2",
     "telegraf": "^3.10.1",
     "webpack": "2.x",
-    "webpack-blocks": "next",
+    "webpack-blocks": "1.x",
     "webpack-node-externals": "^1.6.0"
   },
   "scripts": {
