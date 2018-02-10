@@ -15,6 +15,9 @@ build:
 watch:
 	(cd telegram && yarn watch:dist)
 
+dev:
+	(cd telegram && yarn dev)
+
 up:
 	docker-compose up -d --build
 
