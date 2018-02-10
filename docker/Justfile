@@ -5,8 +5,19 @@
 up:
 	docker-compose up -d --build
 
+dev:
+	docker-compose \
+		-f docker-compose.dev.yml \
+		up -d
+
 logs service='telegram' tail='all':
-	docker-compose logs --follow --tail="{{ tail }}" "{{ service }}"
+	docker-compose \
+		-f docker-compose.yml \
+		-f docker-compose.dev.yml \
+		logs --follow --tail="{{ tail }}" "{{ service }}"
 
 down:
-	docker-compose down
+	docker-compose \
+		-f docker-compose.yml \
+		-f docker-compose.dev.yml \
+		down
