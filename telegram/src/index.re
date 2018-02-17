@@ -42,16 +42,23 @@ module Telegraf = {
 module Redis = {
   module Client = {
     type t;
+    module Options = {
+      type url;
+      type t = {. "url": url};
+    };
+    [@bs.module "redis"] external make : Options.t => t = "createClient";
   };
-  module Options = {
-    type t = {. "url": string};
-  };
-  [@bs.module "redis"] external createClient : Options.t => Client.t = "createClient";
+  let connect = url => Client.make({"url": url});
+  [@bs.send.pipe : Client.t] external disconnect : unit = "quit";
 };
 
 [@bs.val] external apiToken : Telegraf.token = "process.env.TELEGRAM_API_TOKEN";
 
+[@bs.val] external redisUrl : Redis.Client.Options.url = "process.env.REDIS_URL";
+
 let hashtag = [%re "/#[^ ,.]+/"];
+
+Redis.(connect(redisUrl) |> disconnect);
 
 Telegraf.(
   bot(apiToken)
