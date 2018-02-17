@@ -39,6 +39,16 @@ module Telegraf = {
   [@bs.send.pipe : Context.t] external reply : string => unit = "reply";
 };
 
+module Redis = {
+  module Client = {
+    type t;
+  };
+  module Options = {
+    type t = {. "url": string};
+  };
+  [@bs.module "redis"] external createClient : Options.t => Client.t = "createClient";
+};
+
 [@bs.val] external apiToken : Telegraf.token = "process.env.TELEGRAM_API_TOKEN";
 
 let hashtag = [%re "/#[^ ,.]+/"];
