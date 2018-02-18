@@ -4,10 +4,28 @@
 
 let hashtag = [%re "/#[^ ,.]+/"];
 
+module MessageCollectionType = {
+  type t = Telegram.Message.t;
+  let key = "messages";
+};
+
+module Messages = Redis.List(MessageCollectionType);
+
+let save = message => {
+  open Redis;
+  let client = connect(redisUrl);
+  client |> Messages.push(message);
+  client |> disconnect;
+};
+
 Telegraf.Bot.(
   make(apiToken)
-  |> hears(hashtag, context =>
-       context |> reply @@ "Heard: " ++ Telegram.Message.format(context##update##message)
+  |> hears(
+       hashtag,
+       context => {
+         save(context##update##message);
+         context |> reply @@ "Heard: " ++ Telegram.Message.format(context##update##message);
+       }
      )
   |> startPolling
 );
