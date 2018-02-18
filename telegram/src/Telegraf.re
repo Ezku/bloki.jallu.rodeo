@@ -1,7 +1,3 @@
-type bot;
-
-type token;
-
 module Update = {
   type t = {
     .
@@ -17,18 +13,16 @@ module Context = {
     "updateType": string,
     "update": Update.t
   };
+  type middleware = t => unit;
 };
 
-type middleware = Context.t => unit;
-
-[@bs.module] [@bs.new] external bot : token => bot = "telegraf";
-
-[@bs.send.pipe : bot] external command : (string, middleware) => bot = "command";
-
-[@bs.send.pipe : bot] external hears : (Js.Re.t, middleware) => bot = "hears";
-
-[@bs.send.pipe : bot] external startPolling : bot = "startPolling";
-
-[@bs.send.pipe : bot] external stop : bot = "stop";
-
-[@bs.send.pipe : Context.t] external reply : string => unit = "reply";
+module Bot = {
+  type t;
+  type token;
+  [@bs.module] [@bs.new] external make : token => t = "telegraf";
+  [@bs.send.pipe : t] external command : (string, Context.middleware) => t = "command";
+  [@bs.send.pipe : t] external hears : (Js.Re.t, Context.middleware) => t = "hears";
+  [@bs.send.pipe : t] external startPolling : t = "startPolling";
+  [@bs.send.pipe : t] external stop : t = "stop";
+  [@bs.send.pipe : Context.t] external reply : string => unit = "reply";
+};
