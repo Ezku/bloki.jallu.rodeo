@@ -1,6 +1,6 @@
 [@bs.val] external apiToken : Telegraf.Bot.token = "process.env.TELEGRAM_API_TOKEN";
 
-[@bs.val] external redisUrl : Redis.Client.Options.url = "process.env.REDIS_URL";
+[@bs.val] external redisUrl : Redis.Native.Client.Options.url = "process.env.REDIS_URL";
 
 let hashtag = [%re "/#[^ ,.]+/"];
 
@@ -13,7 +13,7 @@ module MessageCollectionType = {
 module Messages = Redis.List(MessageCollectionType);
 
 let save = message => {
-  open Redis;
+  open Redis.Native;
   let client = connect(redisUrl);
   client |> Messages.push(message);
   client |> disconnect;
