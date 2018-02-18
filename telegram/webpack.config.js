@@ -37,23 +37,20 @@ module.exports = createConfig([
     "process.env.NODE_ENV": process.env.NODE_ENV
   }),
   dotenvLoader(),
-  env("development", [externals(nodeExternals())]),
-  env("production", [
-    uglify({
-      uglifyOptions: {
-        mangle: false,
-        compress: {
-          dead_code: true,
-          evaluate: true,
-          unused: true,
-          toplevel: true
-        },
-        output: {
-          comments: false,
-          beautify: true
-        }
+  uglify({
+    uglifyOptions: {
+      mangle: false,
+      compress: {
+        dead_code: true,
+        evaluate: true,
+        unused: true,
+        toplevel: true
+      },
+      output: {
+        comments: false,
+        beautify: true
       }
-    }),
-    addPlugins([new webpack.LoaderOptionsPlugin({ minimize: true })])
-  ])
+    }
+  }),
+  env("production", [addPlugins([new webpack.LoaderOptionsPlugin({ minimize: true })])])
 ]);
