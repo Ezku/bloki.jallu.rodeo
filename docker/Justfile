@@ -10,14 +10,17 @@ dev:
 		-f docker-compose.dev.yml \
 		up -d
 
-logs service='telegram' tail='all':
+compose +command:
 	docker-compose \
 		-f docker-compose.yml \
 		-f docker-compose.dev.yml \
-		logs --follow --tail="{{ tail }}" "{{ service }}"
+		{{ command }}
+
+logs service='telegram' tail='all':
+	just compose logs --follow --tail="{{ tail }}" "{{ service }}"
+
+redis-monitor:
+	just compose exec redis 'redis-cli monitor'
 
 down:
-	docker-compose \
-		-f docker-compose.yml \
-		-f docker-compose.dev.yml \
-		down
+	just compose down
