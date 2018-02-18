@@ -7,6 +7,7 @@ let hashtag = [%re "/#[^ ,.]+/"];
 module MessageCollectionType = {
   type t = Telegram.Message.t;
   let key = "messages";
+  let toString = (data: t) => Js.Json.stringifyAny(data) |> Js.Option.getWithDefault("");
 };
 
 module Messages = Redis.List(MessageCollectionType);

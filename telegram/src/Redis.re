@@ -11,11 +11,10 @@ module Client = {
   [@bs.send.pipe : t] external rpush : (key, data) => unit = "rpush";
 };
 
-module type CollectionType = {type t; let key: string;};
+module type CollectionType = {type t; let key: string; let toString: t => string;};
 
 module List = (Collection: CollectionType) => {
   open Collection;
-  let toString = (data: t) => Js.Json.stringifyAny(data) |> Js.Option.getWithDefault("");
   let push = (data: t) => Client.rpush(key, toString(data));
 };
 
