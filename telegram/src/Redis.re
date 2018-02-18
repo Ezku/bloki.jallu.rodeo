@@ -8,14 +8,14 @@ module Client = {
   type key = string;
   type data = string;
   /* https://redis.io/commands/rpush */
-  [@bs.send.pipe : t] external push : (key, data) => unit = "rpush";
+  [@bs.send.pipe : t] external rpush : (key, data) => unit = "rpush";
 };
 
 module type CollectionType = {type t; let key: string;};
 
 module List = (Collection: CollectionType) => {
   open Collection;
-  let push = (_data: t) => Client.push(key, [%raw {| JSON.stringify(arguments[0]) |}]);
+  let push = (_data: t) => Client.rpush(key, [%raw {| JSON.stringify(arguments[0]) |}]);
 };
 
 let connect = url => Client.make({"url": url});
