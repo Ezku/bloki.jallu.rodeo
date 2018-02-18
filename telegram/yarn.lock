@@ -5671,7 +5671,7 @@ wbuf@^1.1.0, wbuf@^1.7.2:
   dependencies:
     minimalistic-assert "^1.0.0"
 
-webpack-blocks@1.x:
+webpack-blocks@^1.0.0-rc.2:
   version "1.0.0-rc.2"
   resolved "https://registry.yarnpkg.com/webpack-blocks/-/webpack-blocks-1.0.0-rc.2.tgz#c2825cfd96e945f578c3f62e0dfb5e87c4607e4e"
   dependencies:
