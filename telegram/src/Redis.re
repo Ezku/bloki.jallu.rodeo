@@ -12,9 +12,15 @@ module Native = {
     [@bs.send.pipe : t] external rpush : (key, data) => unit = "rpush";
   };
   module Event = {
-    /* type t =
-         | Ready;
-       [@bs.send.pipe : Client.t] external on : (t, unit => unit) => Client.t = "on"; */
+    [@bs.deriving jsConverter]
+    type t = [ | `ready | `error];
+    type jsEventName = string;
+    let make: t => jsEventName = tToJs;
+    [@bs.send.pipe : Client.t] external on : (jsEventName, Js.Json.t => unit) => Client.t = "on";
+  };
+  module Events = {
+    let ready = listener => Event.(on(make(`ready), (_) => listener()));
+    let error = listener => Event.(on(make(`error), e => listener(e)));
   };
   module Ops = {
     let connect = url => Client.make({"url": url});
@@ -31,8 +37,11 @@ module List = (Collection: CollectionType) => {
 };
 
 module Safe = {
-  /* open Funfix;
-     let connect = (url: Native.Options.url) : IO.t(unit) => IO.async((_context, resolve) => {}); */
+  open Funfix;
+  let connect = (url: Native.Options.url) : IO.t(unit) =>
+    IO.fromCallback((resolve, reject) =>
+      Native.(connect(url) |> Events.ready(resolve) |> Events.error(reject))
+    );
 };
 
 include Safe;
