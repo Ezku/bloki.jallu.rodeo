@@ -2294,6 +2294,40 @@ function-bind@^1.0.2, function-bind@^1.1.1:
   version "1.1.1"
   resolved "https://registry.yarnpkg.com/function-bind/-/function-bind-1.1.1.tgz#a56899d3ea3c9bab874bb9773b7c5ede92f4895d"
 
+funfix-core@^6.2.2:
+  version "6.2.2"
+  resolved "https://registry.yarnpkg.com/funfix-core/-/funfix-core-6.2.2.tgz#50eacdc2a5a94c2ba8a57d926d1a275ab7ebbc19"
+
+funfix-effect@^6.2.2:
+  version "6.2.2"
+  resolved "https://registry.yarnpkg.com/funfix-effect/-/funfix-effect-6.2.2.tgz#762b9af97cc151ba88290f5bfa279f4344e26641"
+  dependencies:
+    funfix-core "^6.2.2"
+    funfix-exec "^6.2.2"
+
+funfix-exec@^6.2.2:
+  version "6.2.2"
+  resolved "https://registry.yarnpkg.com/funfix-exec/-/funfix-exec-6.2.2.tgz#0ff03eecb6a6e9839080ddef4d24015f683fcd65"
+  dependencies:
+    funfix-core "^6.2.2"
+
+funfix-types@^6.2.2:
+  version "6.2.2"
+  resolved "https://registry.yarnpkg.com/funfix-types/-/funfix-types-6.2.2.tgz#2577e4fb13bbedbe7de43766bfcdfd3f43304422"
+  dependencies:
+    funfix-core "^6.2.2"
+    funfix-effect "^6.2.2"
+    funfix-exec "^6.2.2"
+
+funfix@^6.2.2:
+  version "6.2.2"
+  resolved "https://registry.yarnpkg.com/funfix/-/funfix-6.2.2.tgz#e13ad032326239ecacd89c3b1b2161a69c8f5a1b"
+  dependencies:
+    funfix-core "^6.2.2"
+    funfix-effect "^6.2.2"
+    funfix-exec "^6.2.2"
+    funfix-types "^6.2.2"
+
 gauge@~2.7.3:
   version "2.7.4"
   resolved "https://registry.yarnpkg.com/gauge/-/gauge-2.7.4.tgz#2c03405c7538c39d7eb37b317022e325fb018bf7"
