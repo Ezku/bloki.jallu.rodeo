@@ -11,6 +11,13 @@ module Client = {
   [@bs.send.pipe : t] external push : (key, data) => unit = "rpush";
 };
 
+module type CollectionType = {type t; let key: string;};
+
+module List = (Collection: CollectionType) => {
+  open Collection;
+  let push = (_data: t) => Client.push(key, [%raw {| JSON.stringify(arguments[0]) |}]);
+};
+
 let connect = url => Client.make({"url": url});
 
 [@bs.send.pipe : Client.t] external disconnect : unit = "quit";
