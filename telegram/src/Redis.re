@@ -15,7 +15,8 @@ module type CollectionType = {type t; let key: string;};
 
 module List = (Collection: CollectionType) => {
   open Collection;
-  let push = (_data: t) => Client.rpush(key, [%raw {| JSON.stringify(arguments[0]) |}]);
+  let toString = (data: t) => Js.Json.stringifyAny(data) |> Js.Option.getWithDefault("");
+  let push = (data: t) => Client.rpush(key, toString(data));
 };
 
 let connect = url => Client.make({"url": url});
