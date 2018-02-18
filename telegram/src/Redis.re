@@ -11,6 +11,11 @@ module Native = {
     /* https://redis.io/commands/rpush */
     [@bs.send.pipe : t] external rpush : (key, data) => unit = "rpush";
   };
+  module Event = {
+    /* type t =
+         | Ready;
+       [@bs.send.pipe : Client.t] external on : (t, unit => unit) => Client.t = "on"; */
+  };
   module Ops = {
     let connect = url => Client.make({"url": url});
     [@bs.send.pipe : Client.t] external disconnect : unit = "quit";
@@ -24,3 +29,10 @@ module List = (Collection: CollectionType) => {
   open Collection;
   let push = (data: t) => Native.Client.rpush(key, toString(data));
 };
+
+module Safe = {
+  /* open Funfix;
+     let connect = (url: Native.Options.url) : IO.t(unit) => IO.async((_context, resolve) => {}); */
+};
+
+include Safe;
