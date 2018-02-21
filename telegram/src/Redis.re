@@ -31,7 +31,9 @@ module Safe = {
   open Funfix;
   let connect = (url: Native.Options.url) : IO.t(Native.Client.t) =>
     IO.fromCallback((resolve, reject) =>
-      Native.(connect(url) |> Events.ready(resolve) |> Events.error(reject))
+      Native.connect(url)
+      |> (client => client |> Native.Client.ready(() => resolve(client)))
+      |> Native.Client.error(reject)
     );
 };
 
