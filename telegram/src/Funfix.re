@@ -4,9 +4,7 @@ module Scheduler = {
 
 module Try = {
   type error = Js.Json.t;
-  type t('a) =
-    | Success('a)
-    | Failure(error);
+  type t('a);
   [@bs.module "funfix"] [@bs.scope "Try"] external success : 'a => t('a) = "success";
   [@bs.module "funfix"] [@bs.scope "Try"] external failure : error => t('a) = "failure";
 };
