@@ -6,21 +6,12 @@ module Native = {
   module Client = {
     type t;
     [@bs.module "redis"] external make : Options.t => t = "createClient";
+    [@bs.send.pipe : t] external ready : ([@bs.as "ready"] _, unit => 'a) => t = "on";
+    [@bs.send.pipe : t] external error : ([@bs.as "error"] _, Js.Exn.t => 'a) => t = "on";
     type key = string;
     type data = string;
     /* https://redis.io/commands/rpush */
     [@bs.send.pipe : t] external rpush : (key, data) => unit = "rpush";
-  };
-  module Event = {
-    [@bs.deriving jsConverter]
-    type t = [ | `ready | `error];
-    type jsEventName = string;
-    let make: t => jsEventName = tToJs;
-    [@bs.send.pipe : Client.t] external on : (jsEventName, Js.Json.t => unit) => Client.t = "on";
-  };
-  module Events = {
-    let ready = listener => Event.(on(make(`ready), (_) => listener()));
-    let error = listener => Event.(on(make(`error), e => listener(e)));
   };
   module Ops = {
     let connect = url => Client.make({"url": url});
