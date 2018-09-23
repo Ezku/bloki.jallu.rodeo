@@ -18,7 +18,7 @@
     "telegraf": "^3.10.1",
     "webpack": "2.x",
     "webpack-blocks": "^1.0.0-rc.2",
-    "webpack-node-externals": "^1.6.0"
+    "webpack-node-externals": "^1.7.2"
   },
   "scripts": {
     "webpack": "webpack --config webpack.config.js",
