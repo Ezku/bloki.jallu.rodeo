@@ -15,7 +15,7 @@
     "npm-run-all": "^4.1.2",
     "protobufjs": "^6.8.4",
     "redis": "^2.8.0",
-    "telegraf": "^3.10.1",
+    "telegraf": "^3.24.1",
     "webpack": "2.x",
     "webpack-blocks": "^1.0.0-rc.2",
     "webpack-node-externals": "^1.6.0"
