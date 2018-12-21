@@ -2,7 +2,7 @@ FROM node:10.14.2-alpine
 
 SHELL ["/bin/ash", "-c"]
 
-COPY ./build /app
+COPY ./dist /app
 WORKDIR /app
 
-CMD ["node", "./app.js"]
+CMD ["node", "./index.js"]
