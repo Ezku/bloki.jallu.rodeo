@@ -5,7 +5,7 @@
   "sources": [
     "src"
   ],
-  "package-specs": ["es6"],
+  "package-specs": ["commonjs"],
   "bs-dependencies" : [
       // add your bs-dependencies here
   ],
