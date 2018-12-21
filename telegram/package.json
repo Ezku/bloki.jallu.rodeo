@@ -8,7 +8,7 @@
     "funfix": "^6.2.2",
     "hiredis": "^0.5.0",
     "node-noop": "^1.0.0",
-    "npm-run-all": "^4.1.2",
+    "npm-run-all": "^4.1.5",
     "redis": "^2.8.0",
     "telegraf": "^3.10.1"
   },
