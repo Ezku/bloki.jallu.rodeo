@@ -1,4 +1,4 @@
-FROM node:9.5.0-alpine
+FROM node:10.14.2-alpine
 
 SHELL ["/bin/ash", "-c"]
 
