@@ -1,23 +1,28 @@
 {
   "name": "@bloki/telegram",
   "version": "0.0.0",
-  "main": "index.js",
+  "main": "dist/index.js",
   "license": "MIT",
   "dependencies": {
-    "bs-platform": "4.0.14",
+    "bs-platform": "^4.0.14",
     "funfix": "^6.2.2",
     "hiredis": "^0.5.0",
     "node-noop": "^1.0.0",
-    "nodemon": "^1.14.12",
     "npm-run-all": "^4.1.2",
-    "protobufjs": "^6.8.4",
     "redis": "^2.8.0",
     "telegraf": "^3.10.1"
   },
   "scripts": {
-    "build": "yarn bsb -clean-world -make-world",
+    "build": "yarn build:bsb && yarn build:js",
+    "build:bsb": "yarn bsb -clean-world -make-world",
+    "build:js": "parcel build lib/js/src/index.js --target=node --bundle-node-modules --no-minify",
     "dev": "run-p dev:*",
     "dev:bsb": "yarn bsb -clean-world -make-world -w",
     "dev:nodemon": "yarn nodemon ./lib/js/src/index.js"
+  },
+  "devDependencies": {
+    "babel-core": "^6.26.3",
+    "babel-preset-env": "^1.7.0",
+    "parcel": "^1.11.0"
   }
 }
