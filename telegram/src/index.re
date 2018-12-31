@@ -1,3 +1,5 @@
+[%raw {| require('dotenv').config() |}]
+
 [@bs.val] external apiToken : Telegraf.Bot.token = "process.env.TELEGRAM_API_TOKEN";
 
 [@bs.val] external redisUrl : Redis.Native.Options.url = "process.env.REDIS_URL";
