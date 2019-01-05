@@ -21,22 +21,14 @@ let save = message => {
   client |> disconnect;
 };
 
-let bot = Telegraf.Bot.make(apiToken);
-
-bot##telegram
-  |> Telegraf.Bot.TelegramAPI.deleteWebhook
-  |> Js.Promise.then_(() => {
-    Telegraf.Bot.(
-      bot
-      |> hears(
-          hashtag,
-          context => {
-            save(context##update##message);
-            context |> reply @@ "Heard: " ++ Telegram.Message.format(context##update##message);
-          }
-        )
-      |> startPolling
-      |> ignore
-    )
-    Js.Promise.resolve();
-  });
+Telegraf.Bot.(
+  make(apiToken)
+  |> hears(
+       hashtag,
+       context => {
+         save(context##update##message);
+         context |> reply @@ "Heard: " ++ Telegram.Message.format(context##update##message);
+       }
+     )
+  |> startPolling
+);
