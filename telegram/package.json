@@ -4,7 +4,7 @@
   "main": "dist/index.js",
   "license": "MIT",
   "dependencies": {
-    "bs-platform": "^4.0.14",
+    "bs-platform": "^4.0.17",
     "dotenv": "^6.2.0",
     "funfix": "^6.2.2",
     "hiredis": "^0.5.0",
